@@ -1,0 +1,20 @@
+﻿PHPUnit 10.5.58 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.2.17
+Configuration: C:\Users\roxoa\OneDrive\PROGRAMADOR JUNIOR\NOVO CONTROLE DE LICENCAS\backend\phpunit.xml
+
+F                                                                   1 / 1 (100%)
+
+Time: 00:04.536, Memory: 40.00 MB
+
+There was 1 failure:
+
+1) Tests\Feature\AclAdminTest::test_admin_can_create_role_and_assign_to_user
+Expected response status code [200] but received 500.
+Failed asserting that 500 is identical to 200.
+
+C:\Users\roxoa\OneDrive\PROGRAMADOR JUNIOR\NOVO CONTROLE DE LICENCAS\backend\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:148
+C:\Users\roxoa\OneDrive\PROGRAMADOR JUNIOR\NOVO CONTROLE DE LICENCAS\backend\tests\Feature\AclAdminTest.php:49
+
+FAILURES!
+Tests: 1, Assertions: 3, Failures: 1.

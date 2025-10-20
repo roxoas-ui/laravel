@@ -11,8 +11,9 @@ class RoleAndPermissionSeeder extends Seeder
 {
     public function run()
     {
-    // Cria role admin se não existir (guard 'sanctum')
-    $adminRole = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'sanctum']);
+    // Cria role admin se não existir usando o guard padrão da aplicação
+    $guard = config('auth.defaults.guard', 'web');
+    $adminRole = Role::firstOrCreate(['name' => 'admin', 'guard_name' => $guard]);
 
         // Opcional: você pode criar permissões padrão aqui
         // $perm = Permission::firstOrCreate(['name' => 'manage users']);

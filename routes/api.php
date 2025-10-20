@@ -30,8 +30,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('licenses', LicenseController::class);
     Route::post('attachments', [AttachmentController::class, 'store']);
 
-    // Admin ACL management (use sanctum guard for API)
-    Route::middleware('role:admin,sanctum')->prefix('admin')->group(function () {
+    // Admin ACL management (force sanctum default guard inside admin group)
+    Route::middleware('force.sanctum')->middleware('role:admin,sanctum')->prefix('admin')->group(function () {
         Route::get('roles', [\App\Http\Controllers\Admin\RoleController::class, 'index']);
         Route::post('roles', [\App\Http\Controllers\Admin\RoleController::class, 'store']);
             Route::delete('roles/{roleName}', function ($roleName) {

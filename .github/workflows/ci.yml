@@ -56,5 +56,11 @@ jobs:
           touch database/testing.sqlite
           php artisan migrate --env=testing --force
 
+      - name: Ensure Spatie permission cache is cleared
+        run: php artisan permission:cache-reset || true
+
       - name: Run tests
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: database/testing.sqlite
         run: vendor/bin/phpunit --testdox

@@ -43,5 +43,11 @@ jobs:
       - name: Generate app key
         run: php artisan key:generate
 
+      - name: Ensure Spatie permission cache is clear
+        run: php artisan permission:cache-reset || true
+
       - name: Execute tests
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: ':memory:'
         run: vendor/bin/phpunit

@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import api, { setToken } from '../services/api'
 import { ref } from 'vue'
 
 export default {
@@ -26,8 +26,9 @@ export default {
     async function submit() {
       error.value = null
       try {
-        const res = await axios.post('/api/login', { email: email.value, password: password.value })
-        emit('logged', res.data.token)
+  const res = await api.post('/api/login', { email: email.value, password: password.value })
+  setToken(res.data.token)
+  emit('logged', res.data.token)
       } catch (e) {
         error.value = e.response?.data?.message || 'Erro ao logar'
       }

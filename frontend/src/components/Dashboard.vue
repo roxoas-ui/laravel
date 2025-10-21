@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import api, { setToken } from '../services/api'
 import { ref, onMounted } from 'vue'
 
 export default {
@@ -29,13 +29,13 @@ export default {
     const roleName = ref('')
 
     onMounted(async () => {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${props.token}`
-      const res = await axios.get('/api/admin/roles')
+      setToken(props.token)
+      const res = await api.get('/api/admin/roles')
       roles.value = res.data
     })
 
     async function createRole() {
-      const res = await axios.post('/api/admin/roles', { name: roleName.value, guard_name: 'sanctum' })
+  const res = await api.post('/api/admin/roles', { name: roleName.value, guard_name: 'sanctum' })
       roles.value.push(res.data)
       roleName.value = ''
     }
